@@ -16,6 +16,12 @@ const SearchEngine = () => {
     setLoading(true);
     const normalizedValue = normalizeEvidence(type, query);
 
+    if (!supabase) {
+      alert('Servicio de búsqueda no disponible en este momento (Faltan variables de entorno)');
+      setLoading(false);
+      return;
+    }
+
     try {
       const { data, error } = await supabase
         .from('reports')

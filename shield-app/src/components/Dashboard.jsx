@@ -13,6 +13,11 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchStats = async () => {
+      if (!supabase) {
+        setLoading(false);
+        return;
+      }
+
       const lastWeek = new Date();
       lastWeek.setDate(lastWeek.getDate() - 7);
 
