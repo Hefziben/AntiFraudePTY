@@ -16,6 +16,12 @@ const ReportForm = () => {
     setLoading(true);
     const normalizedValue = normalizeEvidence(type, value);
 
+    if (!supabase) {
+      alert('Servicio de reportes no disponible en este momento (Faltan variables de entorno)');
+      setLoading(false);
+      return;
+    }
+
     try {
       const { error } = await supabase
         .from('reports')
