@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-10">
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <ShieldAlert className="text-red-600" size={32} />
@@ -27,10 +27,10 @@ function App() {
       <main className="max-w-5xl mx-auto px-4 py-8 space-y-12">
         {/* Hero Section / Search */}
         <section className="text-center space-y-6 pt-4">
-          <h2 className="text-4xl md:text-5xl font-black text-gray-900 leading-tight">
+          <h2 className="text-3xl md:text-5xl font-black text-gray-900 leading-tight px-2">
             Verifica antes de <span className="text-blue-600 underline decoration-4 underline-offset-4">actuar</span>.
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto px-4">
             Consulta nuestra base de datos en tiempo real para detectar estafas por WhatsApp, enlaces maliciosos o cuentas bancarias fraudulentas en Panamá.
           </p>
           <SearchEngine />
@@ -44,14 +44,14 @@ function App() {
         </section>
 
         {/* Report Section */}
-        <section className="bg-gray-900 rounded-3xl p-8 md:p-12 text-white overflow-hidden relative">
-          <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold leading-tight">
+        <section className="bg-gray-900 rounded-[2rem] md:rounded-3xl p-6 md:p-12 text-white overflow-hidden relative mx-2 md:mx-0">
+          <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <div className="space-y-4 md:space-y-6 text-center md:text-left">
+              <h2 className="text-2xl md:text-4xl font-bold leading-tight">
                 ¿Recibiste algo sospechoso? <br />
                 <span className="text-red-500">Repórtalo ahora.</span>
               </h2>
-              <p className="text-gray-400 text-lg">
+              <p className="text-gray-400 text-base md:text-lg">
                 Tu reporte anónimo ayuda a miles de panameños a no caer en la misma trampa. Solo toma 10 segundos.
               </p>
               <ul className="space-y-3">

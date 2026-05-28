@@ -90,7 +90,7 @@ const SearchEngine = () => {
   return (
     <div className="w-full max-w-2xl mx-auto p-4">
       <form onSubmit={handleSearch} className="space-y-4">
-        <div className="flex flex-col md:flex-row gap-2">
+        <div className="flex flex-col md:flex-row gap-2 px-2 md:px-0">
           <select
             value={type}
             onChange={(e) => setType(e.target.value)}
