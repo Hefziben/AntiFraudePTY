@@ -13,7 +13,7 @@ function App() {
           <div className="flex items-center gap-2">
             <ShieldAlert className="text-red-600" size={32} />
             <h1 className="text-2xl font-black tracking-tighter text-gray-900">
-              PILLAO<span className="text-red-600">507</span>
+              Pillao<span className="text-red-600">507</span>
             </h1>
           </div>
           <div className="hidden md:block">
