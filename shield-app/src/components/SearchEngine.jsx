@@ -94,11 +94,12 @@ const SearchEngine = () => {
           <select
             value={type}
             onChange={(e) => setType(e.target.value)}
-            className="p-3 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-blue-500 outline-none"
+            className="p-3 rounded-lg border border-gray-300 bg-white text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none"
           >
-            <option value="whatsapp">WhatsApp / Teléfono</option>
-            <option value="link">Enlace / URL</option>
-            <option value="bank_account">Cuenta Bancaria</option>
+            <option value="whatsapp" className="text-gray-900">WhatsApp / Teléfono</option>
+            <option value="hacked_number" className="text-gray-900">Número Hackeado</option>
+            <option value="link" className="text-gray-900">Enlace / URL</option>
+            <option value="bank_account" className="text-gray-900">Cuenta Bancaria</option>
           </select>
           <div className="relative flex-1">
             <input

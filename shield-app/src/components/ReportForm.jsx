@@ -68,12 +68,12 @@ const ReportForm = () => {
             <select
               value={type}
               onChange={(e) => setType(e.target.value)}
-              className="w-full p-2.5 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-red-500 outline-none"
+              className="w-full p-2.5 rounded-lg border border-gray-300 bg-white text-gray-900 focus:ring-2 focus:ring-red-500 outline-none"
             >
-              <option value="whatsapp">Estafa WhatsApp / Teléfono</option>
-              <option value="hacked_number">MI NÚMERO FUE HACKEADO</option>
-              <option value="link">Enlace / URL Sospechosa</option>
-              <option value="bank_account">Cuenta Bancaria</option>
+              <option value="whatsapp" className="text-gray-900">Estafa WhatsApp / Teléfono</option>
+              <option value="hacked_number" className="text-gray-900">MI NÚMERO FUE HACKEADO</option>
+              <option value="link" className="text-gray-900">Enlace / URL Sospechosa</option>
+              <option value="bank_account" className="text-gray-900">Cuenta Bancaria</option>
             </select>
           </div>
 
