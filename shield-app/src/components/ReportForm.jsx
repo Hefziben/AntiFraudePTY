@@ -86,7 +86,7 @@ const ReportForm = () => {
               value={value}
               onChange={(e) => setValue(e.target.value)}
               placeholder={type === 'hacked_number' ? 'Tu número de 8 dígitos' : 'Ej: +507 6000-0000'}
-              className="w-full p-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
+              className="w-full p-2.5 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-red-500 outline-none"
               required
             />
           </div>
@@ -101,7 +101,7 @@ const ReportForm = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Elígela para borrar el reporte luego"
-                className="w-full p-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
+                className="w-full p-2.5 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-red-500 outline-none"
                 required
               />
               <p className="text-[10px] text-gray-500 mt-1">

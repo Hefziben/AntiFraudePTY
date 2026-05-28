@@ -107,7 +107,7 @@ const SearchEngine = () => {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Ingrese el dato a verificar..."
-              className="w-full p-3 pl-10 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none"
+              className="w-full p-3 pl-10 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none"
             />
             <Search className="absolute left-3 top-3.5 text-gray-400" size={20} />
           </div>
@@ -167,7 +167,7 @@ const SearchEngine = () => {
                         value={recoveryPassword}
                         onChange={(e) => setRecoveryPassword(e.target.value)}
                         placeholder="Tu clave..."
-                        className="flex-1 p-2 text-sm border rounded outline-none focus:ring-1 focus:ring-red-500"
+                        className="flex-1 p-2 text-sm border rounded text-gray-900 outline-none focus:ring-1 focus:ring-red-500"
                       />
                       <button
                         type="submit"

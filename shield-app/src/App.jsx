@@ -13,7 +13,7 @@ function App() {
           <div className="flex items-center gap-2">
             <ShieldAlert className="text-red-600" size={32} />
             <h1 className="text-2xl font-black tracking-tighter text-gray-900">
-              SHIELD<span className="text-red-600">PANAMÁ</span>
+              PILLAO<span className="text-red-600">507</span>
             </h1>
           </div>
           <div className="hidden md:block">
@@ -78,7 +78,7 @@ function App() {
         <div className="max-w-5xl mx-auto px-4 text-center space-y-4">
           <div className="flex items-center justify-center gap-2 opacity-50">
             <ShieldAlert size={20} />
-            <span className="font-bold tracking-tighter">SHIELD PANAMÁ</span>
+            <span className="font-bold tracking-tighter">PILLAO 507</span>
           </div>
           <p className="text-gray-500 text-sm">
             &copy; {new Date().getFullYear()} - Herramienta de Validación Comunitaria. <br />
