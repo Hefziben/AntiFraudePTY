@@ -1,9 +1,10 @@
 -- Create the reports table
 CREATE TABLE IF NOT EXISTS reports (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  type TEXT NOT NULL CHECK (type IN ('whatsapp', 'link', 'bank_account')),
+  type TEXT NOT NULL CHECK (type IN ('whatsapp', 'link', 'bank_account', 'hacked_number')),
   evidence_value TEXT NOT NULL,
   status TEXT NOT NULL CHECK (status IN ('confirmed', 'pending')) DEFAULT 'pending',
+  recovery_password TEXT,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
