@@ -28,7 +28,7 @@ export const normalizeUrl = (url) => {
 }
 
 export const normalizeEvidence = (type, value) => {
-  if (type === 'whatsapp') return normalizePhoneNumber(value)
+  if (type === 'whatsapp' || type === 'hacked_number') return normalizePhoneNumber(value)
   if (type === 'link') return normalizeUrl(value)
   return value.trim() // For bank accounts
 }
