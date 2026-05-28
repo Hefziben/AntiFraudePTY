@@ -2,12 +2,12 @@ import React from 'react';
 import SearchEngine from './components/SearchEngine';
 import ReportForm from './components/ReportForm';
 import Dashboard from './components/Dashboard';
-import PreventionTips from './components/PreventionTips';
-import FAQ from './components/FAQ';
-import EmergencyGuide from './components/EmergencyGuide';
-import { ShieldAlert, HelpCircle, ShieldCheck, LifeBuoy } from 'lucide-react';
+import HelpModal from './components/HelpModal';
+import { ShieldAlert, HelpCircle } from 'lucide-react';
 
 function App() {
+  const [isHelpModalOpen, setIsHelpModalOpen] = React.useState(false);
+
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
       {/* Header */}
@@ -47,40 +47,6 @@ function App() {
         </section>
 
         <hr className="border-gray-200" />
-
-        {/* Prevention & FAQ Section */}
-        <section id="help-section" className="space-y-12">
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl font-black text-gray-900">Prevención y Ayuda</h2>
-            <p className="text-gray-600">Herramientas y consejos para mantenerte seguro en línea.</p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            <div className="lg:col-span-2 space-y-12">
-              <div>
-                <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                  <ShieldCheck className="text-green-600" /> Consejos de Seguridad
-                </h3>
-                <PreventionTips />
-              </div>
-
-              <div>
-                <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                  <HelpCircle className="text-blue-600" /> Preguntas Frecuentes
-                </h3>
-                <FAQ />
-              </div>
-            </div>
-
-            <div className="space-y-6">
-              <h3 className="text-xl font-bold flex items-center gap-2">
-                <LifeBuoy className="text-red-600" /> Guía de Emergencia
-              </h3>
-              <p className="text-sm text-gray-500">¿Ya fuiste víctima? Sigue estos pasos de inmediato.</p>
-              <EmergencyGuide />
-            </div>
-          </div>
-        </section>
 
         {/* Report Section */}
         <section className="bg-gray-900 rounded-3xl p-8 md:p-12 text-white overflow-hidden relative">
@@ -126,23 +92,29 @@ function App() {
         </div>
       </footer>
 
+      {/* Help Modal */}
+      <HelpModal
+        isOpen={isHelpModalOpen}
+        onClose={() => setIsHelpModalOpen(false)}
+      />
+
       {/* Floating Action Button */}
-      <a
-        href="#help-section"
+      <button
+        onClick={() => setIsHelpModalOpen(true)}
         className="fixed bottom-6 right-6 z-50 bg-blue-600 text-white px-4 py-3 rounded-full shadow-2xl flex items-center gap-2 hover:bg-blue-700 transition-all hover:scale-105 active:scale-95 md:hidden"
       >
         <HelpCircle size={20} />
         <span className="font-bold text-sm">FAQ</span>
-      </a>
+      </button>
 
-      {/* Desktop FAB (Optional, but good for consistency) */}
-      <a
-        href="#help-section"
+      {/* Desktop FAB */}
+      <button
+        onClick={() => setIsHelpModalOpen(true)}
         className="fixed bottom-8 right-8 z-50 bg-blue-600 text-white px-6 py-4 rounded-full shadow-2xl hidden md:flex items-center gap-2 hover:bg-blue-700 transition-all hover:scale-105 active:scale-95"
       >
         <HelpCircle size={24} />
         <span className="font-bold">Ayuda y FAQ</span>
-      </a>
+      </button>
     </div>
   );
 }
