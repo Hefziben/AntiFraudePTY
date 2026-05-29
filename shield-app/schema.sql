@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS reports (
   evidence_value TEXT NOT NULL,
   status TEXT NOT NULL CHECK (status IN ('confirmed', 'pending')) DEFAULT 'pending',
   recovery_password TEXT,
+  is_public BOOLEAN DEFAULT TRUE,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 

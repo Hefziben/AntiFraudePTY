@@ -25,7 +25,7 @@ const Dashboard = () => {
         // 1. Fetch All Stats
         const { data: allData, error: statsError } = await supabase
           .from('reports')
-          .select('type, evidence_value');
+          .select('type, evidence_value, is_public');
 
         if (statsError) throw statsError;
 
@@ -37,21 +37,24 @@ const Dashboard = () => {
 
         setStats(newStats);
 
-        // 2. Fetch Recent Reports (Last 5)
+        // 2. Fetch Recent Reports (Last 5) - Only Public ones
         const { data: recent, error: recentError } = await supabase
           .from('reports')
           .select('type, evidence_value, created_at')
+          .eq('is_public', true)
           .order('created_at', { ascending: false })
           .limit(5);
 
         if (recentError) throw recentError;
         setRecentReports(recent);
 
-        // 3. Calculate Trending (Most frequent evidence_values)
-        const frequency = allData.reduce((acc, report) => {
-          acc[report.evidence_value] = (acc[report.evidence_value] || 0) + 1;
-          return acc;
-        }, {});
+        // 3. Calculate Trending (Most frequent evidence_values) - Only from Public ones
+        const frequency = allData
+          .filter(r => r.is_public !== false) // Handle existing data where is_public might be null/undefined as true
+          .reduce((acc, report) => {
+            acc[report.evidence_value] = (acc[report.evidence_value] || 0) + 1;
+            return acc;
+          }, {});
 
         const trendingData = Object.entries(frequency)
           .map(([value, count]) => ({ value, count }))

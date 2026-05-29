@@ -7,6 +7,7 @@ const ReportForm = () => {
   const [type, setType] = useState('whatsapp');
   const [value, setValue] = useState('');
   const [password, setPassword] = useState('');
+  const [isPublic, setIsPublic] = useState(true);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -35,7 +36,8 @@ const ReportForm = () => {
             type,
             evidence_value: normalizedValue,
             status: type === 'hacked_number' ? 'confirmed' : 'pending',
-            recovery_password: type === 'hacked_number' ? password : null
+            recovery_password: type === 'hacked_number' ? password : null,
+            is_public: type === 'hacked_number' ? isPublic : true
           }
         ]);
 
@@ -107,6 +109,19 @@ const ReportForm = () => {
               <p className="text-[10px] text-gray-500 mt-1">
                 Guarda esta contraseña. La necesitarás para quitar tu número de la lista cuando lo recuperes.
               </p>
+
+              <div className="mt-4 flex items-start gap-2 bg-gray-50 p-3 rounded-lg border border-gray-100">
+                <input
+                  type="checkbox"
+                  id="is_public"
+                  checked={isPublic}
+                  onChange={(e) => setIsPublic(e.target.checked)}
+                  className="mt-1"
+                />
+                <label htmlFor="is_public" className="text-xs text-gray-600 leading-tight">
+                  Permitir que mi número aparezca (enmascarado) en la lista pública de reportes recientes del dashboard.
+                </label>
+              </div>
             </div>
           )}
 
