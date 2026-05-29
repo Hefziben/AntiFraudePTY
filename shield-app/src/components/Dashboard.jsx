@@ -73,11 +73,6 @@ const Dashboard = () => {
     fetchData();
   }, []);
 
-  const maskValue = (val) => {
-    if (val.length <= 4) return val;
-    return val.substring(0, 2) + '****' + val.substring(val.length - 2);
-  };
-
   const StatCard = ({ icon: Icon, label, value, color }) => (
     <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center gap-4">
       <div className={`p-3 rounded-lg ${color}`}>
@@ -144,7 +139,7 @@ const Dashboard = () => {
               <div key={i} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                  <span className="text-sm font-medium text-gray-700">{maskValue(report.evidence_value)}</span>
+                  <span className="text-sm font-medium text-gray-700">{report.evidence_value}</span>
                 </div>
                 <span className="text-[10px] font-bold uppercase px-2 py-1 bg-gray-200 text-gray-600 rounded">
                   {report.type === 'hacked_number' ? 'Hack' : report.type}
@@ -163,7 +158,7 @@ const Dashboard = () => {
           <div className="space-y-3">
             {trending.length > 0 ? trending.map((item, i) => (
               <div key={i} className="flex items-center justify-between p-3 bg-red-50 rounded-lg border border-red-100">
-                <span className="text-sm font-bold text-red-700">{maskValue(item.value)}</span>
+                <span className="text-sm font-bold text-red-700">{item.value}</span>
                 <div className="flex items-center gap-1 text-red-600">
                   <span className="text-xs font-black">{item.count}</span>
                   <span className="text-[10px] uppercase font-bold">Reportes</span>
