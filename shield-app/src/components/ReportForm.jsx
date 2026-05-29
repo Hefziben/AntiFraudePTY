@@ -73,7 +73,7 @@ const ReportForm = () => {
               className="w-full p-2.5 rounded-lg border border-gray-300 bg-white text-gray-900 focus:ring-2 focus:ring-red-500 outline-none"
             >
               <option value="whatsapp" className="text-gray-900">Estafa WhatsApp / Teléfono</option>
-              <option value="hacked_number" className="text-gray-900">MI NÚMERO FUE HACKEADO</option>
+              <option value="hacked_number" className="text-gray-900">Mi número fue hackeado</option>
               <option value="link" className="text-gray-900">Enlace / URL Sospechosa</option>
               <option value="bank_account" className="text-gray-900">Cuenta Bancaria</option>
             </select>
@@ -119,7 +119,7 @@ const ReportForm = () => {
                   className="mt-1"
                 />
                 <label htmlFor="is_public" className="text-xs text-gray-600 leading-tight">
-                  Permitir que mi número aparezca (enmascarado) en la lista pública de reportes recientes del dashboard.
+                  Permitir que mi número aparezca en la lista pública de reportes recientes del dashboard.
                 </label>
               </div>
             </div>
