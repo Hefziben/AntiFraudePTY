@@ -2,9 +2,12 @@ import React from 'react';
 import SearchEngine from './components/SearchEngine';
 import ReportForm from './components/ReportForm';
 import Dashboard from './components/Dashboard';
-import { ShieldAlert } from 'lucide-react';
+import HelpModal from './components/HelpModal';
+import { ShieldAlert, HelpCircle } from 'lucide-react';
 
 function App() {
+  const [isHelpModalOpen, setIsHelpModalOpen] = React.useState(false);
+
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
       {/* Header */}
@@ -42,6 +45,8 @@ function App() {
         <section>
           <Dashboard />
         </section>
+
+        <hr className="border-gray-200" />
 
         {/* Report Section */}
         <section className="bg-gray-900 rounded-3xl p-8 md:p-12 text-white overflow-hidden relative">
@@ -86,6 +91,30 @@ function App() {
           </p>
         </div>
       </footer>
+
+      {/* Help Modal */}
+      <HelpModal
+        isOpen={isHelpModalOpen}
+        onClose={() => setIsHelpModalOpen(false)}
+      />
+
+      {/* Floating Action Button */}
+      <button
+        onClick={() => setIsHelpModalOpen(true)}
+        className="fixed bottom-6 right-6 z-50 bg-blue-600 text-white px-4 py-3 rounded-full shadow-2xl flex items-center gap-2 hover:bg-blue-700 transition-all hover:scale-105 active:scale-95 md:hidden"
+      >
+        <HelpCircle size={20} />
+        <span className="font-bold text-sm">FAQ</span>
+      </button>
+
+      {/* Desktop FAB */}
+      <button
+        onClick={() => setIsHelpModalOpen(true)}
+        className="fixed bottom-8 right-8 z-50 bg-blue-600 text-white px-6 py-4 rounded-full shadow-2xl hidden md:flex items-center gap-2 hover:bg-blue-700 transition-all hover:scale-105 active:scale-95"
+      >
+        <HelpCircle size={24} />
+        <span className="font-bold">Ayuda y FAQ</span>
+      </button>
     </div>
   );
 }
