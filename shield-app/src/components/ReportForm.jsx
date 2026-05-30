@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2, Loader2 } from 'lucide-react';
+import { Send, CheckCircle2, Loader2, Key } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { normalizeEvidence } from '../utils/normalization';
 
 const ReportForm = () => {
   const [type, setType] = useState('whatsapp');
   const [value, setValue] = useState('');
+  const [password, setPassword] = useState('');
+  const [isPublic, setIsPublic] = useState(true);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!value) return;
+    if (type === 'hacked_number' && !password) {
+      alert('Por favor, ingresa una contraseña de recuperación');
+      return;
+    }
 
     setLoading(true);
     const normalizedValue = normalizeEvidence(type, value);
@@ -29,7 +35,9 @@ const ReportForm = () => {
           {
             type,
             evidence_value: normalizedValue,
-            status: 'pending'
+            status: type === 'hacked_number' ? 'confirmed' : 'pending',
+            recovery_password: type === 'hacked_number' ? password : null,
+            is_public: type === 'hacked_number' ? isPublic : true
           }
         ]);
 
@@ -62,25 +70,60 @@ const ReportForm = () => {
             <select
               value={type}
               onChange={(e) => setType(e.target.value)}
-              className="w-full p-2.5 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-red-500 outline-none"
+              className="w-full p-2.5 rounded-lg border border-gray-300 bg-white text-gray-900 focus:ring-2 focus:ring-red-500 outline-none"
             >
-              <option value="whatsapp">WhatsApp / Teléfono</option>
-              <option value="link">Enlace / URL Sospechosa</option>
-              <option value="bank_account">Cuenta Bancaria</option>
+              <option value="whatsapp" className="text-gray-900">Estafa WhatsApp / Teléfono</option>
+              <option value="hacked_number" className="text-gray-900">Mi número fue hackeado</option>
+              <option value="link" className="text-gray-900">Enlace / URL Sospechosa</option>
+              <option value="bank_account" className="text-gray-900">Cuenta Bancaria</option>
             </select>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Dato (Número, Link, etc.)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              {type === 'hacked_number' ? 'Tu Número de Teléfono' : 'Dato (Número, Link, etc.)'}
+            </label>
             <input
               type="text"
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              placeholder="Ej: +507 6000-0000"
-              className="w-full p-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
+              placeholder={type === 'hacked_number' ? 'Tu número de 8 dígitos' : 'Ej: +507 6000-0000'}
+              className="w-full p-2.5 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-red-500 outline-none"
               required
             />
           </div>
+
+          {type === 'hacked_number' && (
+            <div className="animate-in fade-in slide-in-from-top-2">
+              <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-1">
+                <Key size={14} /> Contraseña de recuperación
+              </label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Elígela para borrar el reporte luego"
+                className="w-full p-2.5 rounded-lg border border-gray-300 text-gray-900 focus:ring-2 focus:ring-red-500 outline-none"
+                required
+              />
+              <p className="text-[10px] text-gray-500 mt-1">
+                Guarda esta contraseña. La necesitarás para quitar tu número de la lista cuando lo recuperes.
+              </p>
+
+              <div className="mt-4 flex items-start gap-2 bg-gray-50 p-3 rounded-lg border border-gray-100">
+                <input
+                  type="checkbox"
+                  id="is_public"
+                  checked={isPublic}
+                  onChange={(e) => setIsPublic(e.target.checked)}
+                  className="mt-1"
+                />
+                <label htmlFor="is_public" className="text-xs text-gray-600 leading-tight">
+                  Permitir que mi número aparezca en la lista pública de reportes recientes del dashboard.
+                </label>
+              </div>
+            </div>
+          )}
 
           <button
             type="submit"

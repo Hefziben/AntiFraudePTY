@@ -2,18 +2,21 @@ import React from 'react';
 import SearchEngine from './components/SearchEngine';
 import ReportForm from './components/ReportForm';
 import Dashboard from './components/Dashboard';
-import { ShieldAlert } from 'lucide-react';
+import HelpModal from './components/HelpModal';
+import { ShieldAlert, HelpCircle } from 'lucide-react';
 
 function App() {
+  const [isHelpModalOpen, setIsHelpModalOpen] = React.useState(false);
+
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-10">
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <ShieldAlert className="text-red-600" size={32} />
             <h1 className="text-2xl font-black tracking-tighter text-gray-900">
-              SHIELD<span className="text-red-600">PANAMÁ</span>
+              Pillao<span className="text-red-600">507</span>
             </h1>
           </div>
           <div className="hidden md:block">
@@ -27,10 +30,10 @@ function App() {
       <main className="max-w-5xl mx-auto px-4 py-8 space-y-12">
         {/* Hero Section / Search */}
         <section className="text-center space-y-6 pt-4">
-          <h2 className="text-4xl md:text-5xl font-black text-gray-900 leading-tight">
+          <h2 className="text-3xl md:text-5xl font-black text-gray-900 leading-tight px-2">
             Verifica antes de <span className="text-blue-600 underline decoration-4 underline-offset-4">actuar</span>.
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto px-4">
             Consulta nuestra base de datos en tiempo real para detectar estafas por WhatsApp, enlaces maliciosos o cuentas bancarias fraudulentas en Panamá.
           </p>
           <SearchEngine />
@@ -43,15 +46,17 @@ function App() {
           <Dashboard />
         </section>
 
+        <hr className="border-gray-200" />
+
         {/* Report Section */}
-        <section className="bg-gray-900 rounded-3xl p-8 md:p-12 text-white overflow-hidden relative">
-          <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold leading-tight">
+        <section className="bg-gray-900 rounded-[2rem] md:rounded-3xl p-6 md:p-12 text-white overflow-hidden relative mx-2 md:mx-0">
+          <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <div className="space-y-4 md:space-y-6 text-center md:text-left">
+              <h2 className="text-2xl md:text-4xl font-bold leading-tight">
                 ¿Recibiste algo sospechoso? <br />
                 <span className="text-red-500">Repórtalo ahora.</span>
               </h2>
-              <p className="text-gray-400 text-lg">
+              <p className="text-gray-400 text-base md:text-lg">
                 Tu reporte anónimo ayuda a miles de panameños a no caer en la misma trampa. Solo toma 10 segundos.
               </p>
               <ul className="space-y-3">
@@ -78,7 +83,7 @@ function App() {
         <div className="max-w-5xl mx-auto px-4 text-center space-y-4">
           <div className="flex items-center justify-center gap-2 opacity-50">
             <ShieldAlert size={20} />
-            <span className="font-bold tracking-tighter">SHIELD PANAMÁ</span>
+            <span className="font-bold tracking-tighter">PILLAO 507</span>
           </div>
           <p className="text-gray-500 text-sm">
             &copy; {new Date().getFullYear()} - Herramienta de Validación Comunitaria. <br />
@@ -86,6 +91,30 @@ function App() {
           </p>
         </div>
       </footer>
+
+      {/* Help Modal */}
+      <HelpModal
+        isOpen={isHelpModalOpen}
+        onClose={() => setIsHelpModalOpen(false)}
+      />
+
+      {/* Floating Action Button */}
+      <button
+        onClick={() => setIsHelpModalOpen(true)}
+        className="fixed bottom-6 right-6 z-50 bg-blue-600 text-white px-4 py-3 rounded-full shadow-2xl flex items-center gap-2 hover:bg-blue-700 transition-all hover:scale-105 active:scale-95 md:hidden"
+      >
+        <HelpCircle size={20} />
+        <span className="font-bold text-sm">FAQ</span>
+      </button>
+
+      {/* Desktop FAB */}
+      <button
+        onClick={() => setIsHelpModalOpen(true)}
+        className="fixed bottom-8 right-8 z-50 bg-blue-600 text-white px-6 py-4 rounded-full shadow-2xl hidden md:flex items-center gap-2 hover:bg-blue-700 transition-all hover:scale-105 active:scale-95"
+      >
+        <HelpCircle size={24} />
+        <span className="font-bold">Ayuda y FAQ</span>
+      </button>
     </div>
   );
 }
