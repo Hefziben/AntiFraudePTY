@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, MessageCircle, Phone } from 'lucide-react';
 
 const FAQItem = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,10 +47,37 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-2 md:p-6">
-      {faqs.map((faq, index) => (
-        <FAQItem key={index} {...faq} />
-      ))}
+    <div className="space-y-6">
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-2 md:p-6">
+        {faqs.map((faq, index) => (
+          <FAQItem key={index} {...faq} />
+        ))}
+      </div>
+
+      <div className="bg-blue-50 rounded-2xl p-6 border border-blue-100">
+        <h4 className="text-blue-900 font-bold mb-2 flex items-center gap-2">
+          <MessageCircle size={20} /> ¿Tienes más dudas o sugerencias?
+        </h4>
+        <p className="text-blue-700 text-sm mb-4">
+          Contáctanos directamente para consultas personalizadas o para ayudarnos a mejorar el sistema.
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <a
+            href="https://wa.me/50761234490"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-green-600 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center gap-2 hover:bg-green-700 transition-colors"
+          >
+            <MessageCircle size={18} /> WhatsApp
+          </a>
+          <a
+            href="tel:+50761234490"
+            className="bg-blue-600 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center gap-2 hover:bg-blue-700 transition-colors"
+          >
+            <Phone size={18} /> Llamar (+507) 6123-4490
+          </a>
+        </div>
+      </div>
     </div>
   );
 };
